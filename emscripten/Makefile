@@ -21,6 +21,8 @@
 # NOTE: set to 1 to debug or to speed emscripten up while developing.
 #       If the EM_DEBUG environment variable is set,
 #       the value specified here will be ignored.
+EM_DEBUG=0
+
 EM_DEBUG ?= 0
 ifneq ($(EM_DEBUG), 1)
 	CXXFLAGS+=-O3
@@ -75,9 +77,9 @@ EM_POST_JS=post.js
 
 # NOTE: output files
 EM_ESPEAKNG_DATA_PACKAGE_JS=espeakng_data_package.js
-EM_WORKER_DATA=js/espeakng.worker.data
-EM_WORKER_JS=js/espeakng.worker.js
-EM_PTHREAD_MAIN_JS=js/pthread-main.js
+EM_WORKER_DATA=espeak-ng.data
+EM_WORKER_JS=espeak-ng.cjs
+EM_PTHREAD_MAIN_JS=pthread-main.js
 
 # NOTE: intermediate objects
 EM_ALL_PRE_JS=$(EM_PRE_JS) $(EM_ESPEAKNG_DATA_PACKAGE_JS)
@@ -100,9 +102,7 @@ CXXFLAGS+=-I ./ -I ../ -I ../src/include/espeak-ng
 #CXXFLAGS+=-s USE_PTHREADS=1
 
 # NOTE: extra flags for emscripten
-EM_CXXFLAGS=-s RESERVED_FUNCTION_POINTERS=2 --memory-init-file 0 -s FORCE_FILESYSTEM=1 -s WASM=0 -s ERROR_ON_UNDEFINED_SYMBOLS=0
-
-
+EM_CXXFLAGS=--memory-init-file 0 -s WASM=0 -s FORCE_FILESYSTEM=1 -s RESERVED_FUNCTION_POINTERS=2 -s ALLOW_TABLE_GROWTH=1 -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s MODULARIZE=1 -s EXPORT_ES6=0 -s EXPORTED_RUNTIME_METHODS="['addFunction', 'removeFunction', 'FS']" -s EXPORTED_FUNCTIONS="['_malloc', '_free']"
 
 ###############################################################################
 # NOTE: actual targets

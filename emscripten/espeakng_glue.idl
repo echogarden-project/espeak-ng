@@ -53,10 +53,21 @@ interface eSpeakNGWorker {
   void eSpeakNGWorker();
   void synth_(DOMString aText, VoidPtr aCallback);
   long synth_ipa_(DOMString aText, DOMString virtualFileName);
-  long getSizeOfEventStruct_();
+  long synth_with_phoneme_trace_(DOMString aText, DOMString phonemeTraceVirtualFileName, VoidPtr aCallback);
+
+  VoidPtr text_to_phonemes(DOMString aText, long useIpa);
+
   long set_voice(DOMString aName, DOMString aLang, optional octet gender=0, optional octet age=0, optional octet aVariant=0);
+
+  long getSizeOfEventStruct_();
+  DOMString getStringIDFromEventStruct_(VoidPtr event);
+  long getNumericIDFromEventStruct_(VoidPtr event);
+
   [Const] attribute espeak_VOICE[] voices;
   readonly attribute long samplerate;
+
   attribute long rate;
+  attribute long volume;
   attribute long pitch;
+  attribute long range;
 };
