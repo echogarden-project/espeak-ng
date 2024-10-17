@@ -102,7 +102,7 @@ CXXFLAGS+=-I ./ -I ../ -I ../src/include/espeak-ng
 #CXXFLAGS+=-s USE_PTHREADS=1
 
 # NOTE: extra flags for emscripten
-EM_CXXFLAGS=-s WASM=0 -s FORCE_FILESYSTEM=1 -s RESERVED_FUNCTION_POINTERS=2 -s ALLOW_TABLE_GROWTH=1 -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s MODULARIZE=1 -s EXPORT_ES6=0 -s EXPORTED_RUNTIME_METHODS="['addFunction', 'removeFunction', 'FS']" -s EXPORTED_FUNCTIONS="['_malloc', '_free']"
+EM_CXXFLAGS=-s WASM=0 -s FORCE_FILESYSTEM=1 -s RESERVED_FUNCTION_POINTERS=2 -s ALLOW_MEMORY_GROWTH=1 -s ALLOW_TABLE_GROWTH=1 -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s MODULARIZE=1 -s EXPORT_ES6=0 -s EXPORTED_RUNTIME_METHODS="['addFunction', 'removeFunction', 'FS']" -s EXPORTED_FUNCTIONS="['_malloc', '_free']"
 
 ###############################################################################
 # NOTE: actual targets
