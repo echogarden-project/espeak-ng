@@ -49,11 +49,13 @@ class eSpeakNGWorker {
 		espeak_SetParameter(espeakPITCH, pitch, 0);
 		espeak_SetParameter(espeakRANGE, range, 0);
 
+		/*
 		if (current_voice) {
 			espeak_SetVoiceByProperties(current_voice);
 		} else {
 			espeak_SetVoiceByName("default");
 		}
+		*/
 
 		// espeak_Synth(aText, 0, 0, POS_CHARACTER, 0, 0, NULL, NULL);
 		espeak_Synth(aText, 0, 0, POS_CHARACTER, 0, espeakCHARS_UTF8 | espeakSSML | espeakPHONEMES, NULL, NULL);
@@ -63,11 +65,13 @@ class eSpeakNGWorker {
 	}
 
 	int synth_ipa_(const char* aText, const char* virtualFileName) {
+		/*
 		if (current_voice) {
 			espeak_SetVoiceByProperties(current_voice);
 		} else {
 			espeak_SetVoiceByName("default");
 		}
+		*/
 
 		/* phoneme_mode
 		  bit 1:   0=eSpeak's ascii phoneme names, 1= International Phonetic Alphabet (as UTF-8
@@ -100,11 +104,13 @@ class eSpeakNGWorker {
 	int synth_with_phoneme_trace_(const char* aText,
 								  const char* phonemeTraceVirtualFileName,
 								  void* aCallback) {
+		/*
 		if (current_voice) {
 			espeak_SetVoiceByProperties(current_voice);
 		} else {
 			espeak_SetVoiceByName("default");
 		}
+		*/
 
 		/* phoneme_mode
 		  bit 1:   0=eSpeak's ascii phoneme names, 1= International Phonetic Alphabet (as UTF-8
@@ -134,11 +140,13 @@ class eSpeakNGWorker {
 		espeak_SetParameter(espeakPITCH, pitch, 0);
 		espeak_SetParameter(espeakRANGE, range, 0);
 
+		/*
 		if (current_voice) {
 			espeak_SetVoiceByProperties(current_voice);
 		} else {
 			espeak_SetVoiceByName("default");
 		}
+		*/
 
 		espeak_Synth(aText, 0, 0, POS_CHARACTER, 0, 0, NULL, NULL);
 		// espeak_Synth(aText, 0, 0, POS_CHARACTER, 0, espeakSSML, NULL, NULL);
@@ -157,11 +165,13 @@ class eSpeakNGWorker {
 	}
 
 	char* text_to_phonemes(const char* aText, int useIpa) {
+		/*
 		if (current_voice) {
 			espeak_SetVoiceByProperties(current_voice);
 		} else {
 			espeak_SetVoiceByName("default");
 		}
+		*/
 
 		// Initialize phoneme trace
 		int phoneme_options = 0;
