@@ -9,7 +9,7 @@ Module['locateFile'] = function (path, prefix) {
 		let directoryPath
 
 		if (currentModuleUrl.startsWith('file://')) {
-			if (process && process.platform === 'win32') {
+			if (typeof process === 'object' && process.platform === 'win32') {
 				directoryPath = currentModuleUrl.substring(8, lastSlashIndex)
 			} else {
 				directoryPath = currentModuleUrl.substring(7, lastSlashIndex)
