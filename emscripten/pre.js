@@ -9,10 +9,12 @@ Module['locateFile'] = function (path, prefix) {
 		let directoryPath
 
 		if (currentModuleUrl.startsWith('file://')) {
-			if (typeof process === 'object' && process.platform === 'win32') {
-				directoryPath = currentModuleUrl.substring(8, lastSlashIndex)
-			} else {
-				directoryPath = currentModuleUrl.substring(7, lastSlashIndex)
+			directoryPath = currentModuleUrl.substring(7, lastSlashIndex)
+
+			// If it's a Windows path like `/C:/Some/Directory/...`,
+			// remove the first / character
+			if (/^\/[a-zA-Z]:\//.test(directoryPath)) {
+				directoryPath = directoryPath.substring(1)
 			}
 		} else {
 			directoryPath = currentModuleUrl.substring(0, lastSlashIndex)
